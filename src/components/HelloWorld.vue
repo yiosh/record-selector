@@ -7,10 +7,10 @@
       <v-flex xs12>
         <v-tabs
           dark
-          color="cyan"
+          color="primary"
           show-arrows
         >
-          <v-tabs-slider color="yellow"></v-tabs-slider>
+          <v-tabs-slider></v-tabs-slider>
 
           <v-tab
             v-for="item in itemList"
