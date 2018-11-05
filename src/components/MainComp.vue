@@ -27,37 +27,33 @@
               :key="item.id"
             >
               <v-card flat>
-                <!-- <v-card-text>{{ todo.body }}</v-card-text> -->
-                <MyTable :item="item"></MyTable>
+                <Table :item.sync="item"/>
               </v-card>
             </v-tab-item>
           </v-tabs-items>
         </v-tabs>
+        <v-btn color="success" @click="test">Log Selected Items</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-  import MyTable from '@/components/MyTable.vue'
+  import Table from '@/components/Table.vue'
+  import { EventBus } from '../event-bus.js';
 
   export default {
     components: {
-      MyTable
+      Table
     },
     data() {
        return {
+         selectedItems: [],
          itemList: [
            {
             name: 'First ItemList',
             id: 1,
             headers: [
-              {
-                text: '',
-                align: 'left',
-                // sortable: false,
-                value: 'log'
-              },
               {
                 text: 'Dessert (100g serving)',
                 align: 'left',
@@ -278,14 +274,34 @@
         todos: null
        }
     },
+    methods: {
+      test() {
+        EventBus.$emit('btn-clicked')
+      },
+      logResult(array) {
+        console.log('Final Result', array)
+      }
+    },
     mounted() {
-      // fetch('https://jsonplaceholder.typicode.com/posts')
-      //   .then(response => response.json())
-      //   .then(json => {
-      //     console.log(json)
-      //     this.todos = json
-      //   })
-    }
+      EventBus.$on('selected-sent', (array, name, id) => {
+        if (this.selectedItems.length > 0) {
+          if (this.selectedItems.length === this.itemList.length) {
+            this.selectedItems = []
+          }
+
+          if (this.selectedItems.includes(array)) {
+            let index = this.selectedItems.indexOf(array)
+            this.selectedItems.splice(index, 1, array)
+          } else {
+            this.selectedItems.push(array)
+          }
+        } else {
+          this.selectedItems.push(array)
+        }
+        console.log('items', this.selectedItems)
+        
+      })
+    },
   }
 </script>
 
