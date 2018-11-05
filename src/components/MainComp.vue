@@ -13,11 +13,11 @@
           <v-tabs-slider color="yellow"></v-tabs-slider>
 
           <v-tab
-            v-for="item in itemList"
-            :href="'#tab-' + item.id"
-            :key="item.id"
+            v-for="list in itemList"
+            :href="'#tab-' + list.id"
+            :key="list.id"
           >
-            {{ item.name }}
+            {{ list.name }}
           </v-tab>
 
           <v-tabs-items>
@@ -298,7 +298,7 @@
         } else {
           this.selectedItems.push(array)
         }
-        console.log('items', this.selectedItems)
+        console.log('Items selected', this.selectedItems)
         
       })
     },

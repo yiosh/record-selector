@@ -5,18 +5,18 @@
   >
     <v-text-field
       v-if="selected"
-      v-model="props"
+      v-model="prop"
       @change="onChange"
     ></v-text-field>
     <template v-else>
-      {{ props }}
+      {{ prop }}
     </template>
   </td>
 </template>
 
 <script>
 export default {
-  props: ["props"],
+  props: ["prop"],
   data() {
     return {
       selected: false
@@ -28,7 +28,7 @@ export default {
       this.selected = true
     },
     onChange() {
-      this.$emit('update:props', this.props)
+      this.$emit('update:prop', this.prop)
       this.selected = false
     }
   }

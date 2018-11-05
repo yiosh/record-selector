@@ -19,7 +19,7 @@
       </v-tooltip>
     </template>
     <template slot="items" slot-scope="props">
-      <tr is="Row" :props.sync="props">
+      <tr is="Row" :props="props">
       </tr>
     </template>
   </v-data-table>
@@ -75,7 +75,6 @@ export default {
         EventBus.$emit('selected-sent', this.selected, this.props.name, this.props.id)
       }
     })
-    console.log('props', this.props)
   }
 }
 </script>
