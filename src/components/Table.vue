@@ -6,6 +6,8 @@
     v-model="selected"
     item-key="name"
     select-all
+    :loading="active"
+    rows-per-page-text="Rows"
     class="elevation-1"
   >
     <template slot="headerCell" slot-scope="props">
@@ -18,6 +20,8 @@
         </span>
       </v-tooltip>
     </template>
+
+    <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
     <template slot="items" slot-scope="props">
       <tr is="Row" :props="props">
       </tr>
@@ -45,7 +49,7 @@ export default {
       },
       search: '',
       selected: [],
-      props: this.item
+      active: false
 		}
 	},
   methods: {
@@ -72,9 +76,19 @@ export default {
   mounted() {
     EventBus.$on('btn-clicked', () => {
       if (this.selected.length > 0) {
-        EventBus.$emit('selected-sent', this.selected, this.props.name, this.props.id)
+        EventBus.$emit('selected-sent', this.selected)
       }
+    })
+
+    EventBus.$on('loading', () => {
+      this.active = !this.active
     })
   }
 }
 </script>
+
+<style>
+  table.v-table thead th {
+    font-size: 1.2em;
+  }
+</style>

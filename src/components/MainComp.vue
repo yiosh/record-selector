@@ -7,10 +7,10 @@
       <v-flex xs12>
         <v-tabs
           dark
-          color="cyan"
+          color="primary"
           show-arrows
         >
-          <v-tabs-slider color="yellow"></v-tabs-slider>
+          <v-tabs-slider></v-tabs-slider>
 
           <v-tab
             v-for="list in itemList"
@@ -283,7 +283,7 @@
       }
     },
     mounted() {
-      EventBus.$on('selected-sent', (array, name, id) => {
+      EventBus.$on('selected-sent', (array) => {
         if (this.selectedItems.length > 0) {
           if (this.selectedItems.length === this.itemList.length) {
             this.selectedItems = []
@@ -299,7 +299,6 @@
           this.selectedItems.push(array)
         }
         console.log('Items selected', this.selectedItems)
-        
       })
     },
   }

@@ -3,10 +3,11 @@
     <v-edit-dialog
       :return-value.sync="prop"
       lazy
-    > {{ prop }}
+    >€ {{ prop }}
       <v-text-field
         slot="input"
-        v-model="prop"
+        v-model.number="prop"
+        prefix="€"
         @change="onChange"
       ></v-text-field>
     </v-edit-dialog>
@@ -25,12 +26,8 @@ export default {
   methods: {
     onChange() {
       EventBus.$emit('loading')
-      if (typeof this.prop == "number") {
-        this.localProp = Number(this.prop)
-      }
       this.$emit('update:prop', this.prop)
     }
   }
 }
 </script>
-

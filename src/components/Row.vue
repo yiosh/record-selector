@@ -7,8 +7,9 @@
         hide-details
       ></v-checkbox>
     </td>
-    <TableData @td-clicked="unselect" :prop.sync="props.item.name" />
-    <TableData @td-clicked="unselect" :prop.sync="props.item.calories" />
+    <Details @td-clicked="unselect" :prop.sync="props.item.name" />
+    <NumberTableData @td-clicked="unselect" :prop.sync="props.item.calories" />
+    <!-- <TableData @td-clicked="unselect" :prop.sync="props.item.calories" /> -->
     <TableData @td-clicked="unselect" :prop.sync="props.item.fat" />
     <TableData @td-clicked="unselect" :prop.sync="props.item.carbs" />
     <TableData @td-clicked="unselect" :prop.sync="props.item.protein" />
@@ -18,11 +19,15 @@
 
 <script>
 import TableData from '@/components/TableData.vue'
+import NumberTableData from '@/components/NumberTableData.vue'
+import Details from '@/components/Details.vue'
 
 export default {
   props: ["props"],
   components: {
-    TableData
+    TableData,
+    Details,
+    NumberTableData
   },
   methods: {
     unselect() {
