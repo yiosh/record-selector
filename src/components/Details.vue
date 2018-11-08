@@ -25,6 +25,9 @@
           :selected="active"
           @click="toggle"
         >
+          <v-avatar>
+            <v-icon>{{ chip.icon }}</v-icon>
+          </v-avatar>
           {{ chip.text }}
         </v-chip>
       </v-item>
@@ -43,15 +46,18 @@ export default {
       chipss: [
         {
           text:'Chip1',
-          color: 'primary'
+          color: 'primary',
+          icon: 'account_circle'
         },
         {
           text:'Chip2',
-          color: 'grey'
+          color: 'grey',
+          icon: 'explore'
         },
         {
           text:'Chip3',
-          color: 'error'
+          color: 'error',
+          icon: 'alarm_on'
         }
       ],
       show: true
@@ -71,11 +77,11 @@ export default {
 }
 </script>
 
-<style >
-  .v-item-group {
+<style scoped>
+  div.v-item-group {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    padding: 1em 0;
   }
 
   .chips {

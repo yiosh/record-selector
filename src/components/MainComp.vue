@@ -27,7 +27,8 @@
               :key="item.id"
             >
               <v-card flat>
-                <Table :item.sync="item"/>
+                <Table v-show="layout == 'data_tables'" :item.sync="item"/>
+                <DataIterator v-show="layout == 'data_iterator'" :item.sync="item.desserts"/>
               </v-card>
             </v-tab-item>
           </v-tabs-items>
@@ -40,14 +41,17 @@
 
 <script>
   import Table from '@/components/Table.vue'
+  import DataIterator from '@/components/DataIterator.vue'
   import { EventBus } from '../event-bus.js';
 
   export default {
     components: {
-      Table
+      Table,
+      DataIterator
     },
     data() {
        return {
+         layout: 'data_tables',
          selectedItems: [],
          itemList: [
            {
@@ -84,7 +88,8 @@
                   fat: 9.0,
                   carbs: 37,
                   protein: 4.3,
-                  iron: '1%'
+                  iron: '1%',
+                  selected: false
                 },
                 {
                   value: false,
@@ -93,7 +98,8 @@
                   fat: 16.0,
                   carbs: 23,
                   protein: 6.0,
-                  iron: '7%'
+                  iron: '7%',
+                  selected: false
                 },
                 {
                   value: false,
@@ -102,7 +108,8 @@
                   fat: 3.7,
                   carbs: 67,
                   protein: 4.3,
-                  iron: '8%'
+                  iron: '8%',
+                  selected: false
                 },
                 {
                   value: false,
@@ -111,7 +118,8 @@
                   fat: 16.0,
                   carbs: 49,
                   protein: 3.9,
-                  iron: '16%'
+                  iron: '16%',
+                  selected: false
                 },
                 {
                   value: false,
@@ -120,7 +128,8 @@
                   fat: 0.0,
                   carbs: 94,
                   protein: 0.0,
-                  iron: '0%'
+                  iron: '0%',
+                  selected: false
                 },
                 {
                   value: false,
@@ -300,10 +309,15 @@
         }
         console.log('Items selected', this.selectedItems)
       })
+
+      EventBus.$on('data_iterator', () => {
+        this.layout = 'data_iterator'
+      })
+
+       EventBus.$on('data_tables', () => {
+        this.layout = 'data_tables'
+      })
     },
   }
 </script>
 
-<style>
-
-</style>

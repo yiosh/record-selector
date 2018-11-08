@@ -53,9 +53,6 @@ export default {
 		}
 	},
   methods: {
-    logItem(item) {
-      console.log('loggeditem',item)
-    },
     toggleAll () {
       if (this.selected.length) this.selected = []
       else this.selected = this.item.desserts.slice()

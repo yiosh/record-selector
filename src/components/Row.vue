@@ -9,8 +9,8 @@
     </td>
     <Details @td-clicked="unselect" :prop.sync="props.item.name" />
     <NumberTableData @td-clicked="unselect" :prop.sync="props.item.calories" />
-    <!-- <TableData @td-clicked="unselect" :prop.sync="props.item.calories" /> -->
-    <TableData @td-clicked="unselect" :prop.sync="props.item.fat" />
+    <ButtonGroupTableData @td-clicked="unselect" :prop.sync="props.item.calories" />
+    <!-- <TableData @td-clicked="unselect" :prop.sync="props.item.fat" /> -->
     <TableData @td-clicked="unselect" :prop.sync="props.item.carbs" />
     <TableData @td-clicked="unselect" :prop.sync="props.item.protein" />
     <TableData @td-clicked="unselect" :prop.sync="props.item.iron" />
@@ -20,6 +20,7 @@
 <script>
 import TableData from '@/components/TableData.vue'
 import NumberTableData from '@/components/NumberTableData.vue'
+import ButtonGroupTableData from '@/components/ButtonGroupTableData.vue'
 import Details from '@/components/Details.vue'
 
 export default {
@@ -27,7 +28,8 @@ export default {
   components: {
     TableData,
     Details,
-    NumberTableData
+    NumberTableData,
+    ButtonGroupTableData
   },
   methods: {
     unselect() {
